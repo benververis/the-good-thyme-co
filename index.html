@@ -51,14 +51,14 @@
       padding: 0.9rem 3rem;
     }
     .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      color: var(--color-text);
+      display: flex;
+      align-items: center;
       text-decoration: none;
     }
-    .nav-logo span { color: var(--color-accent); }
+    .nav-logo img {
+      height: 140px;
+      width: auto;
+    }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       font-size: 0.85rem;
@@ -422,12 +422,13 @@
       display: flex; justify-content: space-between; align-items: center;
     }
     .footer-logo {
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: rgba(255,255,255,0.9);
+      display: flex;
+      align-items: center;
     }
-    .footer-logo span { color: var(--color-accent); }
+    .footer-logo img {
+      height: 90px;
+      width: auto;
+    }
     .footer-links { display: flex; gap: 2rem; }
     .footer-links a {
       font-size: 0.8rem;
@@ -487,7 +488,7 @@
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="#" class="nav-logo">The Good <span>Thyme</span> Co</a>
+    <a href="#" class="nav-logo"><img src="images/nav-logo.png" alt="The Good Thyme Co"></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#gallery">Gallery</a></li>
@@ -663,7 +664,7 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <div class="footer-logo">The Good <span>Thyme</span> Co</div>
+      <div class="footer-logo"><img src="images/footer-logo.png" alt="The Good Thyme Co"></div>
       <div class="footer-links">
         <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
         <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
