@@ -192,14 +192,9 @@
       overflow: hidden;
       position: relative;
     }
-    .about-image .placeholder-img {
+    .about-image img {
       width: 100%; height: 100%;
       object-fit: cover;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      color: var(--color-text-light);
-      background: linear-gradient(145deg, var(--color-bg-alt), var(--color-accent-light));
     }
     .about-text p {
       color: var(--color-text-light);
@@ -243,21 +238,9 @@
     }
     .gallery-item:hover { transform: scale(1.02); }
     .gallery-item:nth-child(2) { aspect-ratio: 1 / 1.3; grid-row: span 2; }
-    .gallery-placeholder {
+    .gallery-item img {
       width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 0.5rem;
-      background: linear-gradient(145deg, var(--color-bg-alt), var(--color-accent-light));
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      color: var(--color-text-light);
-    }
-    .gallery-placeholder small {
-      font-family: var(--font-body);
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--color-accent);
+      object-fit: cover;
     }
 
     /* ─── MENU ─── */
@@ -523,34 +506,19 @@
       </div>
       <div class="gallery-grid">
         <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <small>Board Photo</small>
-            🫒
-          </div>
+          <img src="public/1.JPG" alt="Charcuterie board" />
         </div>
         <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <small>Featured Board</small>
-            🧀
-          </div>
+          <img src="public/2.PNG" alt="Featured charcuterie board" />
         </div>
         <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <small>Board Photo</small>
-            🍇
-          </div>
+          <img src="public/3.JPG" alt="Charcuterie board" />
         </div>
         <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <small>Board Photo</small>
-            🥖
-          </div>
+          <img src="public/4.JPG" alt="Charcuterie board" />
         </div>
         <div class="gallery-item reveal">
-          <div class="gallery-placeholder">
-            <small>Board Photo</small>
-            🍯
-          </div>
+          <img src="public/5.JPG" alt="Charcuterie board" />
         </div>
       </div>
     </div>
@@ -561,10 +529,7 @@
     <div class="container">
       <div class="about-grid">
         <div class="about-image reveal">
-          <div class="placeholder-img">
-            <!-- Replace this div with an <img> tag when you have a photo -->
-            🧀 Your Photo Here
-          </div>
+          <img src="public/6.JPG" alt="The Good Thyme Co" class="placeholder-img" />
         </div>
         <div class="about-text reveal">
           <p class="section-tag">Our Story</p>
