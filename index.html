@@ -81,9 +81,8 @@
     /* ─── HERO ─── */
     .hero {
       min-height: 100vh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center;
-      padding: 8rem 2rem 6rem;
+      display: flex; align-items: center; justify-content: center;
+      padding: 8rem 2rem 4rem;
       position: relative;
     }
     .hero::before {
@@ -94,6 +93,20 @@
         radial-gradient(ellipse at 80% 50%, #E8E4DA 0%, transparent 50%);
       opacity: 0.4;
       pointer-events: none;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 1100px;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
     }
     .hero-tag {
       font-size: 0.8rem;
@@ -106,12 +119,11 @@
     }
     .hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-size: clamp(2.8rem, 5vw, 5rem);
       font-weight: 300;
       line-height: 1.05;
       letter-spacing: -0.02em;
       color: var(--color-text);
-      max-width: 800px;
       opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s;
     }
     .hero h1 em {
@@ -140,13 +152,25 @@
       border-radius: 50px;
       transition: background 0.3s, transform 0.2s;
       opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s;
+      align-self: flex-start;
     }
     .hero-cta:hover { background: var(--color-accent-dark); transform: translateY(-1px); }
     .hero-cta svg { width: 16px; height: 16px; transition: transform 0.3s; }
     .hero-cta:hover svg { transform: translateX(3px); }
+    .hero-image {
+      aspect-ratio: 4/5;
+      border-radius: 12px;
+      overflow: hidden;
+      opacity: 0; animation: fadeUp 0.8s ease forwards 0.5s;
+    }
+    .hero-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
 
     .hero-scroll {
-      position: absolute; bottom: 2.5rem;
+      position: absolute; bottom: 2.5rem; left: 50%;
+      transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
       font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
       color: var(--color-text-light);
@@ -455,9 +479,12 @@
       }
       .nav-toggle { display: block; }
 
+      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+      .hero-content { align-items: center; }
+      .hero-cta { align-self: center; }
+      .hero-image { order: -1; aspect-ratio: 3/2; }
       section { padding: 4rem 1.5rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .about-image { order: -1; aspect-ratio: 3/2; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .form-row { flex-direction: column; }
@@ -482,13 +509,20 @@
 
   <!-- HERO -->
   <section class="hero">
-    <p class="hero-tag">Artisan Charcuterie & Cheese Boards</p>
-    <h1>Crafted with <em>care</em>, served with style</h1>
-    <p class="hero-sub">Beautifully curated boards featuring locally sourced cheeses, cured meats, seasonal fruits, and artisan accompaniments.</p>
-    <a href="#contact" class="hero-cta">
-      Get in Touch
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-    </a>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="hero-tag">Artisan Charcuterie & Cheese Boards</p>
+        <h1>Crafted with <em>care</em>, served with style</h1>
+        <p class="hero-sub">Beautifully curated boards featuring locally sourced cheeses, cured meats, seasonal fruits, and artisan accompaniments.</p>
+        <a href="#contact" class="hero-cta">
+          Get in Touch
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </a>
+      </div>
+      <div class="hero-image">
+        <img src="public/10.PNG" alt="The Good Thyme Co charcuterie board" />
+      </div>
+    </div>
     <div class="hero-scroll">
       <span>Scroll</span>
       <div class="line"></div>
@@ -498,10 +532,7 @@
   <!-- ABOUT -->
   <section class="about" id="about">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-image reveal">
-          <img src="public/10.PNG" alt="The Good Thyme Co" class="placeholder-img" />
-        </div>
+      <div class="about-grid" style="grid-template-columns: 1fr; max-width: 700px;">
         <div class="about-text reveal">
           <p class="section-tag">Our Story</p>
           <h2 class="section-title">Where good food meets good times</h2>
