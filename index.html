@@ -417,6 +417,23 @@
     }
     .btn-submit:hover { background: var(--color-accent-dark); transform: translateY(-1px); }
 
+    .form-message {
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      display: none;
+    }
+    .form-message.success {
+      display: block;
+      background: var(--color-accent-light);
+      color: var(--color-accent-dark);
+    }
+    .form-message.error {
+      display: block;
+      background: #f8d7da;
+      color: #842029;
+    }
+
     /* ─── FOOTER ─── */
     footer {
       background: var(--color-text);
@@ -654,6 +671,7 @@
             <textarea id="message" name="message" placeholder="Tell us about your event, number of guests, any dietary needs..." rows="5"></textarea>
           </div>
           <button type="submit" class="btn-submit">Send Inquiry</button>
+          <div class="form-message" id="formMessage"></div>
         </form>
       </div>
     </div>
@@ -702,8 +720,11 @@
       e.preventDefault();
       const form = e.target;
       const btn = form.querySelector('.btn-submit');
+      const msg = document.getElementById('formMessage');
       btn.disabled = true;
       btn.textContent = 'Sending...';
+      msg.className = 'form-message';
+      msg.textContent = '';
 
       fetch('/', {
         method: 'POST',
@@ -712,15 +733,18 @@
       })
         .then((res) => {
           if (!res.ok) throw new Error('Network response was not ok');
-          btn.textContent = 'Sent! ✓';
+          btn.textContent = 'Sent!';
           btn.style.background = 'var(--color-accent-dark)';
+          msg.className = 'form-message success';
+          msg.textContent = "Thanks for reaching out! We'll get back to you soon.";
           form.reset();
           setTimeout(() => { btn.textContent = 'Send Inquiry'; btn.style.background = ''; btn.disabled = false; }, 3000);
         })
         .catch(() => {
-          btn.textContent = 'Error — try again';
-          btn.style.background = '#b44';
-          setTimeout(() => { btn.textContent = 'Send Inquiry'; btn.style.background = ''; btn.disabled = false; }, 3000);
+          btn.textContent = 'Send Inquiry';
+          btn.disabled = false;
+          msg.className = 'form-message error';
+          msg.textContent = 'Something went wrong. Please try again or email us directly.';
         });
     });
   </script>
