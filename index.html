@@ -602,7 +602,7 @@
             </div>
             <div>
               <p class="contact-detail-label">Email</p>
-              <p class="contact-detail-text">hello@thegoodthymeco.com</p>
+              <p class="contact-detail-text">support@thegoodthymeco.com</p>
             </div>
           </div>
           <div class="contact-detail">
@@ -625,7 +625,8 @@
           </div>
         </div>
 
-        <form class="contact-form reveal" id="contactForm">
+        <form class="contact-form reveal" id="contactForm" name="contact" netlify netlify-honeypot="bot-field">
+          <input type="hidden" name="bot-field" />
           <div class="form-row">
             <div class="form-group">
               <label for="name">Name</label>
@@ -696,13 +697,31 @@
     }, { threshold: 0.15 });
     reveals.forEach(el => observer.observe(el));
 
-    // Simple form handler
+    // Contact form handler (Netlify Forms)
     document.getElementById('contactForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      const btn = e.target.querySelector('.btn-submit');
-      btn.textContent = 'Sent! ✓';
-      btn.style.background = 'var(--color-accent-dark)';
-      setTimeout(() => { btn.textContent = 'Send Inquiry'; btn.style.background = ''; }, 3000);
+      const form = e.target;
+      const btn = form.querySelector('.btn-submit');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error('Network response was not ok');
+          btn.textContent = 'Sent! ✓';
+          btn.style.background = 'var(--color-accent-dark)';
+          form.reset();
+          setTimeout(() => { btn.textContent = 'Send Inquiry'; btn.style.background = ''; btn.disabled = false; }, 3000);
+        })
+        .catch(() => {
+          btn.textContent = 'Error — try again';
+          btn.style.background = '#b44';
+          setTimeout(() => { btn.textContent = 'Send Inquiry'; btn.style.background = ''; btn.disabled = false; }, 3000);
+        });
     });
   </script>
 </body>
